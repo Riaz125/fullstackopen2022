@@ -10,6 +10,13 @@ const Button = (props) => (
   </button>
 )
 
+const Statistics = (props) => (
+  <div>
+    <div>all {props.all}</div>
+    <div>average {props.average}</div>
+  </div>
+)
+
 
 
 const App = () => {
@@ -32,6 +39,9 @@ const App = () => {
     console.log('value now', newValue)
     setBad(newValue)
   }
+
+  const all = good + neutral + bad;
+  const average = (good-bad)/all;
   
   return (
     <div>
@@ -43,6 +53,7 @@ const App = () => {
       <Display rating ={"good"} value={good} />
       <Display rating ={"neutral"} value={neutral} />
       <Display rating ={"bad"} value={bad} />
+      <Statistics all={all} average={average}/>
       
     </div>
   ) 

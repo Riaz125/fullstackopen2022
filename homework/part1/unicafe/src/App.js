@@ -1,21 +1,29 @@
 import { useState } from 'react'
 
 const Title = props => <h1>{props.value}</h1>
-const Display = props => (
-  <div>{props.rating} {props.value}</div>
-)
+
 const Button = (props) => (
   <button onClick={props.handleClick}>
     {props.text}
   </button>
 )
 
-const Statistics = (props) => (
-  <div>
-    <div>all {props.all}</div>
-    <div>average {props.average}</div>
-  </div>
-)
+const Statistics = (props) => {
+  if(props.all === 0) {
+    return (
+      <div>No Feedback Given</div>
+    )
+  } else {
+  return (
+    <div>
+      <div>good {props.good}</div>
+      <div>neutral {props.neutral}</div>
+      <div>bad {props.bad}</div>
+      <div>all {props.all}</div>
+      <div>average {props.average}</div>
+    </div>
+  )}
+}
 
 
 
@@ -50,10 +58,7 @@ const App = () => {
       <Button handleClick={() => setToNeutral(neutral + 1)} text="neutral" />
       <Button handleClick={() => setToBad(bad + 1)} text="bad" />
       <Title value = {"statistics"} />
-      <Display rating ={"good"} value={good} />
-      <Display rating ={"neutral"} value={neutral} />
-      <Display rating ={"bad"} value={bad} />
-      <Statistics all={all} average={average}/>
+      <Statistics all={all} average={average} good={good} neutral={neutral} bad={bad}/>
       
     </div>
   ) 

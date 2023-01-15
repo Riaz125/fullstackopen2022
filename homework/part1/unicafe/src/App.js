@@ -22,11 +22,6 @@ const Statistics = (props) => {
   } else {
   return (
     <div>
-      {/*<StatisticLine text="good" value={props.good} />
-      <StatisticLine text="neutral" value={props.neutral} />
-      <StatisticLine text="bad" value={props.bad} />
-      <StatisticLine text="all" value={props.all} />
-      <StatisticLine text="average" value={props.average} />*/}
       <table>
       <tr>
         <StatisticLine text="good" value={props.good} />

@@ -19,27 +19,40 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(Array(7).fill(0));
+  const [largest, setLargest] = useState(0);
 
   const setToSelected = (newValue) => {
     console.log('value now', newValue)
     setSelected(newValue)
   }
 
+  let largestVote = 0;
   const setToPoints = () => {
     const copy = [...points]
     copy[selected]++
     setPoints(copy)
+    points.forEach((element, index) => { 
+      if(element > points[largestVote]) {
+        largestVote = index;
+      }
+    })
+    setLargest(largestVote)
   }
 
+ 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br/>
       has {points[selected]} votes
       <br/>
       <Button handleClick={() => setToPoints()} text="vote"/>
       <Button handleClick={() => setToSelected(Math.floor(Math.random() * 7))} text="next anecdote" />
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[largest]}
     </div>
+    
   )
 }
 
